@@ -1,6 +1,6 @@
 ![ChatterBot: Machine learning in Python](https://i.imgur.com/b3SCmGT.png)
 
-# ChatterBot
+# 채터봇(ChatterBot)
 
 ChatterBot is a machine-learning based conversational dialog engine build in
 Python which makes it possible to generate responses based on collections of
