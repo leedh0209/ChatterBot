@@ -2,10 +2,9 @@
 
 # 채터봇(ChatterBot)
 
-ChatterBot is a machine-learning based conversational dialog engine build in
-Python which makes it possible to generate responses based on collections of
-known conversations. The language independent design of ChatterBot allows it
-to be trained to speak any language.
+채터봇은 머신러닝 기반 파이썬 의사소통 엔진으로, 학습된 대화를 기반으로 답변을 생성할 
+수 있습니다. 채터봇은 언어 독립적으로 디자인 되었기 때문에 어떤 언어를 사용하더라고 
+채팅 서비스를 이용할 수 있습니다.
 
 [![Package Version](https://img.shields.io/pypi/v/chatterbot.svg)](https://pypi.python.org/pypi/chatterbot/)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
@@ -17,26 +16,27 @@ to be trained to speak any language.
 [![Code Climate](https://codeclimate.com/github/gunthercox/ChatterBot/badges/gpa.svg)](https://codeclimate.com/github/gunthercox/ChatterBot)
 [![Join the chat at https://gitter.im/chatterbot/Lobby](https://badges.gitter.im/chatterbot/Lobby.svg)](https://gitter.im/chatterbot/Lobby?utm_source=badge&utm_medium=badge&utm_content=badge)
 
-An example of typical input would be something like this:
+채팅을 입력하는 과정은 다음과 같습니다:
 
 > **user:** Good morning! How are you doing?  
 > **bot:**  I am doing very well, thank you for asking.  
 > **user:** You're welcome.  
 > **bot:** Do you like hats?  
 
-## How it works
+## 작동 원리
 
-An untrained instance of ChatterBot starts off with no knowledge of how to communicate. Each time a user enters a statement, the library saves the text that they entered and the text that the statement was in response to. As ChatterBot receives more input the number of responses that it can reply and the accuracy of each response in relation to the input statement increase. The program selects the closest matching response by searching for the closest matching known statement that matches the input, it then returns the most likely response to that statement based on how frequently each response is issued by the people the bot communicates with.
+학습되지 않은 채터봇은 학습 지식이 없으므로 의사소통을 할줄 모릅니다. 매번 사용자가 문장을 입력할 때마다, 라이브러리는 해당 문장과 답변으로 도출된 문장을 동시에 저장합니다.
+채터봇이 더 많은 대화를 저장할 때마다 답변할 수 있는 문장의 수와 정확도는 올라가게 됩니다. 채터봇은 답변을 선택할 때 가능성 있는 문장 중 가장 가장 정확도가 높은 문장을 검색해 선택합니다. 또한 유저에게서 답변이 돌아오는 빈도를 바탕으로 가장 높은 답변을 판단합니다.
 
-## Installation
+## 설치 방법
 
-This package can be installed from [PyPi](https://pypi.python.org/pypi/ChatterBot) by running:
+[PyPi](https://pypi.python.org/pypi/ChatterBot) 채터봇 패키지는 아래의 코드를 실행시켜 다운로드 가능합니다:
 
 ```
 pip install chatterbot
 ```
 
-## Basic Usage
+## 기본 사용법
 
 ```
 from chatterbot import ChatBot
@@ -44,76 +44,73 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 chatbot = ChatBot('Ron Obvious')
 
-# Create a new trainer for the chatbot
+# 챗봇 학습모델 생성
 trainer = ChatterBotCorpusTrainer(chatbot)
 
-# Train the chatbot based on the english corpus
+# 내장된 영어 말뭉치를 사용해 챗봇 학습
 trainer.train("chatterbot.corpus.english")
 
-# Get a response to an input statement
+# 문장을 입력해 답변 출력하기
 chatbot.get_response("Hello, how are you today?")
 ```
 
-# Training data
+# 학습 데이터
 
-ChatterBot comes with a data utility module that can be used to train chat bots.
-At the moment there is training data for over a dozen languages in this module.
-Contributions of additional training data or training data
-in other languages would be greatly appreciated. Take a look at the data files
-in the [chatterbot-corpus](https://github.com/gunthercox/chatterbot-corpus)
-package if you are interested in contributing.
+채터봇은 학습에 필요한 데이터 유틸리티 모듈이 내장되어 있습니다. 현재는 총 22개의 언어가
+학습 데이터에 내장되어 있습니다. 이를 제외한 언어 데이터 추가 혹은 학습 데이터 개선활동은
+크게 장려됩니다. 다음 주소에서 학습 데이터의 상세한 정보를 확인 할 수 있습니다.
+[chatterbot-corpus](https://github.com/gunthercox/chatterbot-corpus)
 
 ```
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-# Create a new trainer for the chatbot
+# 챗봇 학습모델 생성
 trainer = ChatterBotCorpusTrainer(chatbot)
 
-# Train based on the english corpus
+# 내장된 영어 말뭉치를 사용해 챗봇 학습
 trainer.train("chatterbot.corpus.english")
 
-# Train based on english greetings corpus
+# 내장된 영어 인삿말 학습
 trainer.train("chatterbot.corpus.english.greetings")
 
-# Train based on the english conversations corpus
+# 내장된 영어 의사소통 학습
 trainer.train("chatterbot.corpus.english.conversations")
 ```
 
-**Corpus contributions are welcome! Please make a pull request.**
+**학습 데이터 기여할동은 크게 장려됩니다! Pull request부탁합니다.**
 
 # [Documentation](https://chatterbot.readthedocs.io/)
 
-View the [documentation](https://chatterbot.readthedocs.io/)
-for ChatterBot on Read the Docs.
+원본 문서 [documentation](https://chatterbot.readthedocs.io/)
+혹은 [한글문서](https://simplistic-aphid-cce.notion.site/ChatterBot-7b8719bd0a1f449eab45556248c6ebd6)
+를 참고해주세요.
 
-To build the documentation yourself using [Sphinx](http://www.sphinx-doc.org/), run:
+직접 문서를 작성하고 싶다면 [Sphinx](http://www.sphinx-doc.org/), 다음의 코드를 실행하세요:
 
 ```
 sphinx-build -b html docs/ build/
 ```
 
-# Examples
+# 예제
 
-For examples, see the [examples](https://github.com/gunthercox/ChatterBot/tree/master/examples)
-directory in this project's git repository.
+예제를 보기 위해서는 [examples](https://github.com/gunthercox/ChatterBot/tree/master/examples)
+해당 깃 링크를 클릭하세요.
 
-There is also an example [Django project using ChatterBot](https://github.com/gunthercox/ChatterBot/tree/master/examples), as well as an example [Flask project using ChatterBot](https://github.com/chamkank/flask-chatterbot).
+위의 예시뿐만 아니라 [Django project using ChatterBot](https://github.com/gunthercox/ChatterBot/tree/master/examples), [Flask project using ChatterBot](https://github.com/chamkank/flask-chatterbot) 2개의 다른 예제또한 존재합니다.
 
-# History
+# 업데이트 기록
 
-See release notes for changes https://github.com/gunthercox/ChatterBot/releases
+패키지 릴리즈 문서를 보기 위해서 다음 링크를 클릭하세요. https://github.com/gunthercox/ChatterBot/releases
 
-# Development pattern for contributors
+# 오픈소스 기여 패턴
 
-1. [Create a fork](https://help.github.com/articles/fork-a-repo/) of
-   the [main ChatterBot repository](https://github.com/gunthercox/ChatterBot) on GitHub.
-2. Make your changes in a branch named something different from `master`, e.g. create
-   a new branch `my-pull-request`.
-3. [Create a pull request](https://help.github.com/articles/creating-a-pull-request/).
-4. Please follow the [Python style guide for PEP-8](https://www.python.org/dev/peps/pep-0008/).
-5. Use the projects [built-in automated testing](https://chatterbot.readthedocs.io/en/latest/testing.html).
-   to help make sure that your contribution is free from errors.
+1. [메인 repository](https://github.com/gunthercox/ChatterBot)를 [fork하기](https://help.github.com/articles/fork-a-repo/)
+2. `master`를 제외한 다른 branch name으로 branch를 생성하세요, 예시)`my-pull-request`.
+3. [Pull request하기](https://help.github.com/articles/creating-a-pull-request/).
+4. 다음 링크의 방식을 따라야 합니다 [Python style guide for PEP-8](https://www.python.org/dev/peps/pep-0008/).
+5. 작성한 코드의 에러여부는 [built-in automated testing](https://chatterbot.readthedocs.io/en/latest/testing.html) 이 주소를 사용해 확인해주세요.
+  
 
-# License
+# 라이센스
 
-ChatterBot is licensed under the [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
+채터봇의 라이센스는 다음과 같습니다. [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
